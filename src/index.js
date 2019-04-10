@@ -8,13 +8,12 @@ class App extends React.Component {
         super(props); // paretns constructor
 
         this.state = { latitude: null, errMessage: '' };
+    }
+
+    componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
-            position => {
-                this.setState({ latitude: position.coords.latitude });
-            },
-            err => {
-                this.setState({ errMessage: err.message });
-            }
+            position => this.setState({ latitude: position.coords.latitude }),
+            err => this.setState({ errMessage: err.message })
         );
     }
 
